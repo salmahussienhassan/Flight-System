@@ -21,12 +21,12 @@
             <div class="d-flex justify-content-between">
                 <div class="d-flex w-50">
                     <div class="d-flex flex-column">
-                        <h6>{{formatTime(item[0].deptTime) }}</h6>
+                        <h6>{{helperService.formatTime(item[0].deptTime) }}</h6>
                         <p>{{item[0].departureTerminalAirport.cityName}}</p>
                     </div>
                     <hr  class="w-50 mx-3">
                     <div class="d-flex flex-column">
-                        <h6>{{formatTime(item[0].landTime) }}</h6>
+                        <h6>{{helperService.formatTime(item[0].landTime) }}</h6>
                         <p>{{item[0].arrivalTerminalAirport.cityName}}</p>
                     </div>
 
@@ -34,7 +34,7 @@
 
                 <div class="d-flex flex-column  trip-time w-25">
                     <div>
-                        <h6>{{ calculateTimeDifference(item[0].deptTime, item[0].landTime) }}</h6>
+                        <h6>{{ helperService.calculateTimeDifference(item[0].deptTime, item[0].landTime) }}</h6>
                         <p *ngIf="item.length==1"> direct</p>
                         <p *ngIf="item.length==2"> 1 stop</p>
                     </div>
@@ -48,7 +48,7 @@
 
         <div class="col-md-3">
             <div class="d-flex align-items-center justify-content-between">
-                <h6> {{calculateTotalPriceInEGP(item[0]) | currency:'EGP':'symbol':'1.0-2'}}</h6>
+                <h6> {{helperService.calculateTotalPriceInEGP(item[0]) | currency:'EGP':'symbol':'1.0-2'}}</h6>
                 <button class="btn btn-danger">Book Now</button>
 
             </div>

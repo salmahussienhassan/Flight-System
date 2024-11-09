@@ -1,3 +1,4 @@
+import { HelperService } from './../../../shared/services/helper.service';
 import { Component, Input } from '@angular/core';
 import { FlightDTO } from 'src/app/shared/models/flight';
 import { FlightsService } from './../../../shared/services/flights.service';
@@ -15,43 +16,19 @@ export class FlightCardComponent {
 flightData:any
 word:string=''
 filteredFlightData: any[] = []; 
-kwdToEgp = 60;
 
-  constructor(private FlightsService:FlightsService){}
+
+  constructor(private FlightsService:FlightsService,public helperService:HelperService){}
 
   ngOnChanges(): void {
     this.applyFilter();
   }
 
   ngOnInit(): void {
-// make settimeout function just for vercel server to make live Dmo
+// make settimeout function just for vercel server to make live Demo
     setTimeout(() => {
       this.GetData()
     }, 600);
-  }
-
-
-  formatTime(time: string): string {
-    const [hours, minutes] = time.split(':');
-    return `${hours}:${minutes}`;
-  }
-
-  timeToMinutes(time: string): number {
-    const [hours, minutes] = time.split(':').map(Number);
-    return hours * 60 + minutes;
-  }
-
-  calculateTimeDifference(deptTime: string, landTime: string): string {
-    const deptMinutes = this.timeToMinutes(deptTime);
-    const landMinutes = this.timeToMinutes(landTime);
-    const diffMinutes = landMinutes - deptMinutes;
-    const hours = Math.floor(diffMinutes / 60);
-    const minutes = diffMinutes % 60;
-    return `${this.padZero(hours)}h ${this.padZero(minutes)}m`;
-  }
-
-  padZero(value: number): string {
-    return value < 10 ? `0${value}` : `${value}`;
   }
 
   GetData(){
@@ -99,28 +76,15 @@ kwdToEgp = 60;
         });
       }
   });
-
   setTimeout(() => {
     this.applyFilter(); 
   }, 200);
   
-
-  }
-
-  calculateTotalPriceInEGP(item: any): number {
-      let totalPriceKWD = 0;
-      if (item.fare) {
-          if (item.fare.currencyCode === 'KWD' && item.fare.amount > 0) {
-              totalPriceKWD += item.fare.amount;
-          }
-      } 
-      return totalPriceKWD * this.kwdToEgp;
   }
 
   applyFilter(): void {
     this.filteredFlightData = this.flightData;
 
-    // Apply airline filter if selectedAirlines has values
     if (this.selectedAirlines.length > 0) {
       const selectedAirlinesNormalized = this.selectedAirlines.map((name: string) => name.trim().toLowerCase());
       
@@ -130,23 +94,22 @@ kwdToEgp = 60;
       });
     }
     
-    // Apply stop filter if selectedStop has values
     if (this.selectedStop.length > 0) {
-      // Direct flights
+    
       if (this.selectedStop.includes('direct')) {
         this.filteredFlightData = this.filteredFlightData.filter((flight: any) => {
           return flight.length === 1;
         });
       }
       
-      // One-stop flights
+    
       if (this.selectedStop.includes('oneStop')) {
         this.filteredFlightData = this.filteredFlightData.filter((flight: any) => {
           return flight.length === 2;
         });
       }
       
-      // Two-stop flights
+  
       if (this.selectedStop.includes('twoStop')) {
         this.filteredFlightData = this.filteredFlightData.filter((flight: any) => {
           return flight.length === 3;
