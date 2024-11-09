@@ -24,10 +24,7 @@ kwdToEgp = 60;
   }
 
   ngOnInit(): void {
-    setTimeout(() => {
-      this.GetData()
-      
-    }, 100);
+    this.GetData()
   }
 
 
