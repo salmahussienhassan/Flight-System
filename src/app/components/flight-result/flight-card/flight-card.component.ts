@@ -1,6 +1,5 @@
 import { HelperService } from './../../../shared/services/helper.service';
 import { Component, Input } from '@angular/core';
-import { FlightDTO } from 'src/app/shared/models/flight';
 import { FlightsService } from './../../../shared/services/flights.service';
 
 
