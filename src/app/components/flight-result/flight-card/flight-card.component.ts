@@ -8,7 +8,6 @@ import { FlightsService } from './../../../shared/services/flights.service';
   selector: 'app-flight-card',
   templateUrl: './flight-card.component.html',
   styleUrls: ['./flight-card.component.scss'],
-
 })
 export class FlightCardComponent {
   @Input() selectedAirlines: string[] = [];
@@ -16,8 +15,7 @@ export class FlightCardComponent {
 flightData:any
 word:string=''
 filteredFlightData: any[] = []; 
-
-
+ timeoutId: any;
   constructor(private FlightsService:FlightsService,public helperService:HelperService){}
 
   ngOnChanges(): void {
@@ -26,7 +24,7 @@ filteredFlightData: any[] = [];
 
   ngOnInit(): void {
 // make settimeout function just for vercel server to make live Demo
-    setTimeout(() => {
+    this.timeoutId=setTimeout(() => {
       this.GetData()
     }, 600);
   }
@@ -117,5 +115,7 @@ filteredFlightData: any[] = [];
       }
     }
   }
-  
+  ngOnDestroy(): void {
+      clearTimeout(this.timeoutId);
+  }
 }
