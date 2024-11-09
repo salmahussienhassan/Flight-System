@@ -4,7 +4,8 @@ import { HomeComponent } from './components/home/home.component';
 import { FlightResultComponent } from './components/flight-result/flight-result.component';
 
 const routes: Routes = [
-  {path:'',component:FlightResultComponent},
+  {path:'',component:HomeComponent},
+  {path:'Flight-Result',component:FlightResultComponent}, 
 ];
 
 @NgModule({
