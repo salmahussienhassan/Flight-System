@@ -24,11 +24,10 @@ kwdToEgp = 60;
   }
 
   ngOnInit(): void {
-
+// make settimeout function just for vercel server to make live Dmo
     setTimeout(() => {
       this.GetData()
-      
-    }, 500);
+    }, 600);
   }
 
 
