@@ -1,0 +1,23 @@
+
+/* navbar */
+nav{
+    
+    position: fixed;
+    left: -300px;
+    top: 0;
+    z-index: 2;
+    bottom: 0;
+    display: flex;
+   
+   
+}
+.sidebar{
+    color:black;
+    width: 300px;
+}
+.icon{
+    right: 20px;
+}
+.open{
+    cursor: pointer;
+}

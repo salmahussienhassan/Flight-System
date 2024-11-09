@@ -1,0 +1,77 @@
+<nav class="gap-2" >
+ 
+  
+    <div class="sidebar bg-white  p-3 position-relative" >
+       <div class="d-flex justify-content-between">
+        <div class="d-flex align-items-center gap-2">
+          <i class="fa-solid fa-sliders"></i>
+          <p>Filter</p>
+        </div>
+           <span class=" icon ">
+             <a ><i class="fa-solid fa-xmark "></i></a></span>
+
+       </div>
+       <hr class="mb-3">
+
+       <div>
+        <div  class=" d-flex py-2 align-items-center justify-content-between cursor-pointer "  (click)="showStopsFilter()">
+           <h6 >Stops</h6>
+            <a>
+              <i *ngIf="stopsFilter" class="fa-solid fa-angle-up" aria-hidden="true"></i>
+              <i *ngIf="!stopsFilter" class="fa-solid fa-angle-down" aria-hidden="true"></i>
+            </a>
+          
+          </div>
+ 
+          <div *ngIf="stopsFilter">
+ <form  [formGroup]="stopsForm" >
+     <div class=" d-flex justify-content-between">
+         <label class="form-check-label fs-10">Non-stop</label>
+         <input (change)="onCheckboxStopChange()" formControlName="direct" type="checkbox" class="form-check-input rounded-0 checkbox-style" >
+     </div>
+     <div class=" d-flex justify-content-between">
+      <label class="form-check-label fs-10">1 Stop</label>
+      <input (change)="onCheckboxStopChange()" formControlName="oneStop" type="checkbox" class="form-check-input rounded-0 checkbox-style" >
+  </div>
+  <div class=" d-flex justify-content-between">
+    <label class="form-check-label fs-10">2 Stop</label>
+    <input (change)="onCheckboxStopChange()" formControlName="twoStop" type="checkbox" class="form-check-input rounded-0 checkbox-style" >
+</div>
+ </form>
+          </div>
+    </div>
+
+    <hr>
+
+   <div>
+       <div  class=" d-flex py-2 align-items-center justify-content-between cursor-pointer "  (click)="showAirlineFilter()">
+          <h6 >Airline</h6>
+           <a>
+             <i *ngIf="airlineFilter" class="fa-solid fa-angle-up" aria-hidden="true"></i>
+             <i *ngIf="!airlineFilter" class="fa-solid fa-angle-down" aria-hidden="true"></i>
+           </a>
+         
+         </div>
+
+         <div *ngIf="airlineFilter">
+<form  [formGroup]="airlineForm" >
+    <div class=" d-flex justify-content-between" *ngFor="let item of airlinesData;let i = index" formArrayName="airlines">
+        <label class="form-check-label fs-10">{{item}}</label>
+        <input  [formControlName]="i" type="checkbox" class="form-check-input rounded-0 checkbox-style" (change)="onCheckboxChange()">
+
+    </div>
+</form>
+         </div>
+   </div>
+
+    </div>
+    <span class="open fs-4 p-2 ">
+       <div class="d-flex align-items-center gap-2">
+           <i class="fa-solid fa-bars"></i>
+           <span>Filter </span> 
+
+       </div>
+    </span>
+  
+  
+  </nav>
