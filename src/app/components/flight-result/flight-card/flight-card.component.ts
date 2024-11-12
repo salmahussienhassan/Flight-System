@@ -22,7 +22,7 @@ filteredFlightData: any[] = [];
   }
 
   ngOnInit(): void {
-// make settimeout function just for vercel server to make live Demo
+    // make settimeout function just for vercel server to make live Demo
     this.timeoutId=setTimeout(() => {
       this.GetData()
     }, 600);
@@ -73,6 +73,7 @@ filteredFlightData: any[] = [];
         });
       }
   });
+
   setTimeout(() => {
     this.applyFilter(); 
   }, 200);
